@@ -238,8 +238,6 @@
   height: 30px;
   object-fit: contain;
   opacity: 0.95;
-  filter: brightness(0) invert(1);
-  /* makes the publisher logo white */
 }
 
 /* Responsive grid rules */
