@@ -133,7 +133,7 @@ export default function Footer() {
           <div className={styles.publisherInfo}>
             <span>Published by</span>
             <img 
-              src="/images/publisher/logo_main.png" 
+              src="/images/publisher/logo_main_2.png" 
               alt="Publisher Logo" 
               className={styles.publisherLogo}
             />

@@ -24,10 +24,10 @@ dist-ssr
 *.sw?
 
 # Exclude local workspace docs and original author headshot
-recommendations.md
-PRD.md
-v1_1.md
-big_idea.md
-headshot_ime.jpg
-logo_main.png
-logo_main_2.png
+/recommendations.md
+/PRD.md
+/v1_1.md
+/big_idea.md
+/headshot_ime.jpg
+/logo_main.png
+/logo_main_2.png
