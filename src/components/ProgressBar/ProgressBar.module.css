@@ -1,0 +1,9 @@
+.progressBar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 3px;
+  background: linear-gradient(90deg, var(--color-primary-orange), var(--color-primary-red));
+  z-index: 1200; /* High enough to be on top of sticky navigation */
+  pointer-events: none;
+}

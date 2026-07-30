@@ -1,0 +1,107 @@
+.bigIdea {
+  position: relative;
+  padding: var(--space-8) 0;
+  background-color: var(--color-primary-white);
+  min-height: 60vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  overflow: hidden;
+}
+
+.radialGlow {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 600px;
+  height: 600px;
+  background: radial-gradient(circle, rgba(249, 195, 0, 0.06) 0%, transparent 70%);
+  pointer-events: none;
+  z-index: 1;
+}
+
+.container {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  max-width: 800px !important;
+}
+
+.eyebrow {
+  font-family: var(--font-body);
+  font-size: var(--font-size-caption);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 3px;
+  color: var(--color-primary-red);
+  margin-bottom: var(--space-3);
+  opacity: 0;
+  transform: translateY(15px);
+  transition: opacity var(--duration-slow) var(--ease-standard),
+              transform var(--duration-slow) var(--ease-standard);
+}
+
+.statement {
+  font-size: var(--font-size-h2);
+  color: var(--color-text-primary);
+  line-height: 1.2;
+  margin-bottom: var(--space-3);
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity var(--duration-slow) var(--ease-standard) 150ms,
+              transform var(--duration-slow) var(--ease-standard) 150ms;
+}
+
+.description {
+  max-width: 700px;
+  color: var(--color-text-secondary);
+  line-height: 1.6;
+  font-size: var(--font-size-body);
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity var(--duration-slow) var(--ease-standard) 300ms,
+              transform var(--duration-slow) var(--ease-standard) 300ms;
+}
+
+.hologramLine {
+  width: 150px;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--color-primary-gold), transparent);
+  margin-top: var(--space-5);
+  opacity: 0;
+  transition: opacity var(--duration-slow) var(--ease-standard) 450ms;
+}
+
+/* Scroll reveal trigger */
+.revealed .eyebrow {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.revealed .statement {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.revealed .description {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.revealed .hologramLine {
+  opacity: 0.8;
+}
+
+@media (max-width: 768px) {
+  .bigIdea {
+    padding: var(--space-7) 0;
+  }
+  
+  .statement {
+    font-size: 32px;
+  }
+}

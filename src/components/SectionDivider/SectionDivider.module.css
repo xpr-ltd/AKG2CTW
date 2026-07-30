@@ -1,0 +1,69 @@
+.divider {
+  width: 100%;
+  position: relative;
+  overflow: hidden;
+}
+
+.glow {
+  height: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  pointer-events: none;
+  background: transparent;
+}
+
+.glowBeam {
+  width: 60%;
+  height: 2px;
+  background: radial-gradient(circle, var(--color-hologram-cyan) 0%, transparent 80%);
+  filter: blur(1px);
+  box-shadow: 0 0 12px var(--color-hologram-cyan);
+}
+
+.hologram {
+  height: 80px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  pointer-events: none;
+}
+
+.hologramLine {
+  width: 80%;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--color-hologram-cyan), transparent);
+  position: relative;
+}
+
+.hologramLine::after {
+  content: '';
+  position: absolute;
+  top: -2px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 8px;
+  height: 5px;
+  background: var(--color-hologram-cyan);
+  box-shadow: 0 0 8px var(--color-hologram-cyan);
+  border-radius: 50%;
+}
+
+.gradient {
+  height: 120px;
+  background: linear-gradient(180deg, transparent, rgba(249, 195, 0, 0.05));
+  pointer-events: none;
+}
+
+.curve {
+  height: 120px;
+  margin-top: -120px;
+  z-index: 10;
+}
+
+.curve svg {
+  width: 100%;
+  height: 100%;
+  display: block;
+}

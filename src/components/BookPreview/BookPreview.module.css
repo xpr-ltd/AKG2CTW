@@ -1,0 +1,296 @@
+.bookPreview {
+  padding: var(--space-7) 0;
+  background-color: var(--color-primary-white);
+  border-bottom: 1px solid var(--color-border-light);
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.header {
+  text-align: center;
+  margin-bottom: var(--space-6);
+}
+
+.eyebrow {
+  font-family: var(--font-body);
+  font-size: var(--font-size-caption);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 3px;
+  color: var(--color-primary-red);
+  margin-bottom: var(--space-2);
+  display: block;
+}
+
+.title {
+  font-size: var(--font-size-h1);
+  color: var(--color-text-primary);
+}
+
+.content {
+  display: grid;
+  grid-template-columns: 1.1fr 0.9fr;
+  gap: var(--space-6);
+  width: 100%;
+  align-items: center;
+}
+
+/* 3D Open Book Mockup */
+.mockupContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: var(--space-4);
+  perspective: 1500px;
+}
+
+.book3d {
+  display: flex;
+  position: relative;
+  width: 520px;
+  height: 350px;
+  background-color: #d8d4cd;
+  border-radius: 6px;
+  box-shadow: 0 15px 35px rgba(16, 35, 62, 0.15);
+  transform: rotateX(20deg) rotateY(-5deg);
+  transition: transform var(--duration-medium) var(--ease-standard);
+  padding: 6px;
+}
+
+.book3d:hover {
+  transform: rotateX(15deg) rotateY(0deg) translateY(-5px);
+  box-shadow: 0 25px 45px rgba(16, 35, 62, 0.25);
+}
+
+.bookSpine {
+  position: absolute;
+  top: 6px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 16px;
+  height: calc(100% - 12px);
+  background: linear-gradient(90deg, #b8b2a9, #eae6df, #b8b2a9);
+  z-index: 10;
+  box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.1);
+}
+
+.page {
+  flex: 1;
+  background-color: #faf8f5;
+  height: 100%;
+  position: relative;
+  padding: var(--space-3);
+  box-shadow: inset 0 0 15px rgba(0,0,0,0.05);
+}
+
+.leftPage {
+  border-radius: 4px 0 0 4px;
+  transform: rotateY(8deg);
+  transform-origin: right center;
+  border-right: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.rightPage {
+  border-radius: 0 4px 4px 0;
+  transform: rotateY(-8deg);
+  transform-origin: left center;
+  border-left: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.pageContent {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  justify-content: space-between;
+}
+
+.chapterNum {
+  font-family: var(--font-body);
+  font-size: var(--font-size-caption);
+  font-weight: 600;
+  color: var(--color-primary-orange);
+  text-transform: uppercase;
+}
+
+.pageTitle {
+  font-family: var(--font-body);
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--color-text-primary);
+  margin: var(--space-1) 0;
+  text-transform: none;
+}
+
+.doodleSketch {
+  height: 90px;
+  background-color: rgba(16, 35, 62, 0.02);
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: var(--space-1) 0;
+  border: 1px dashed rgba(16, 35, 62, 0.1);
+}
+
+.pageText {
+  font-size: var(--font-size-caption);
+  font-style: italic;
+  color: var(--color-text-secondary);
+  line-height: 1.4;
+}
+
+.pageHologram {
+  height: 90px;
+  position: relative;
+  background-color: rgba(0, 200, 255, 0.03);
+  border-radius: 8px;
+  margin: var(--space-1) 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+  border: 1px solid rgba(0, 200, 255, 0.1);
+}
+
+.miniGlobe {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(0, 200, 255, 0.4) 0%, transparent 80%);
+  border: 1px dashed var(--color-hologram-cyan);
+  box-shadow: 0 0 10px rgba(0, 200, 255, 0.3);
+  z-index: 2;
+  animation: rotateGlobe 6s linear infinite;
+}
+
+@keyframes rotateGlobe {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+.hologramBeam {
+  position: absolute;
+  bottom: 0;
+  width: 80px;
+  height: 60px;
+  background: linear-gradient(180deg, rgba(0, 200, 255, 0.2), transparent);
+  clip-path: polygon(30% 0, 70% 0, 100% 100%, 0 100%);
+  z-index: 1;
+}
+
+/* Right Checklist Column */
+.checklistColumn {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  text-align: left;
+}
+
+.checklistIntro {
+  font-size: var(--font-size-body);
+  color: var(--color-text-secondary);
+  margin-bottom: var(--space-4);
+  line-height: 1.6;
+}
+
+.checklist {
+  list-style: none;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: var(--space-3);
+  width: 100%;
+}
+
+.checkItem {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  
+  /* Scroll reveal start state */
+  opacity: 0;
+  transform: translateX(20px);
+  transition: opacity var(--duration-medium) var(--ease-standard),
+              transform var(--duration-medium) var(--ease-standard);
+}
+
+.revealed .checkItem {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.checkIcon {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background-color: rgba(40, 167, 69, 0.1);
+  color: var(--color-success);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.checkText {
+  font-family: var(--font-body);
+  font-size: var(--font-size-small);
+  font-weight: 500;
+  color: var(--color-text-primary);
+}
+
+/* Responsive Layout */
+@media (max-width: 1024px) {
+  .content {
+    grid-template-columns: 1fr;
+    gap: var(--space-5);
+  }
+  
+  .mockupContainer {
+    order: 2;
+  }
+  
+  .checklistColumn {
+    order: 1;
+    align-items: center;
+    text-align: center;
+  }
+  
+  .checklist {
+    max-width: 600px;
+    margin: 0 auto;
+  }
+}
+
+@media (max-width: 768px) {
+  .title {
+    font-size: var(--font-size-h2);
+  }
+  
+  .book3d {
+    width: 100%;
+    max-width: 440px;
+    height: 300px;
+  }
+  
+  .page {
+    padding: var(--space-2);
+  }
+  
+  .doodleSketch, .pageHologram {
+    height: 70px;
+  }
+}
+
+@media (max-width: 480px) {
+  .checklist {
+    grid-template-columns: 1fr;
+    gap: var(--space-2);
+  }
+  
+  .book3d {
+    height: 260px;
+  }
+}

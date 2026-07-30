@@ -1,0 +1,184 @@
+.ctaSection {
+  padding: var(--space-8) 0;
+  background-color: var(--color-primary-navy);
+  position: relative;
+  overflow: hidden;
+  text-align: center;
+}
+
+.backgroundDecor {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.stars {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: 
+    radial-gradient(white 1px, transparent 0),
+    radial-gradient(white 1px, transparent 0);
+  background-size: 80px 80px, 120px 120px;
+  background-position: 0 0, 40px 60px;
+  opacity: 0.15;
+}
+
+.projectionBeam {
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 300px;
+  height: 100%;
+  background: linear-gradient(0deg, rgba(0, 200, 255, 0.08) 0%, transparent 80%);
+  clip-path: polygon(30% 0, 70% 0, 100% 100%, 0 100%);
+}
+
+.bottomGlow {
+  position: absolute;
+  bottom: -150px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 600px;
+  height: 300px;
+  background: radial-gradient(circle, rgba(249, 195, 0, 0.12) 0%, transparent 70%);
+  filter: blur(15px);
+}
+
+.container {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  max-width: 800px !important;
+}
+
+.headline {
+  font-size: var(--font-size-h1);
+  color: var(--color-primary-white);
+  line-height: 1.15;
+  margin-bottom: var(--space-3);
+  
+  /* Scroll reveal starting state */
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity var(--duration-slow) var(--ease-standard),
+              transform var(--duration-slow) var(--ease-standard);
+}
+
+.supportingText {
+  font-size: var(--font-size-body);
+  color: var(--color-primary-white);
+  opacity: 0.85;
+  line-height: 1.6;
+  max-width: 650px;
+  margin-bottom: var(--space-5);
+  
+  /* Scroll reveal starting state */
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity var(--duration-slow) var(--ease-standard) 150ms,
+              transform var(--duration-slow) var(--ease-standard) 150ms;
+}
+
+.buttonGroup {
+  display: flex;
+  gap: var(--space-3);
+  
+  /* Scroll reveal starting state */
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity var(--duration-slow) var(--ease-standard) 300ms,
+              transform var(--duration-slow) var(--ease-standard) 300ms;
+}
+
+/* Scroll reveal trigger */
+.revealed .headline,
+.revealed .supportingText,
+.revealed .buttonGroup {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Red primary button */
+.primaryBtn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--color-primary-red);
+  color: var(--color-primary-white);
+  padding: 16px 32px;
+  font-family: var(--font-body);
+  font-size: var(--font-size-small);
+  font-weight: 600;
+  text-decoration: none;
+  border-radius: var(--radius-button);
+  border: none;
+  cursor: pointer;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+  transition: transform var(--duration-fast) var(--ease-standard),
+              box-shadow var(--duration-fast) var(--ease-standard),
+              background-color var(--duration-fast) var(--ease-standard);
+}
+
+.primaryBtn:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 10px 20px rgba(177, 14, 22, 0.4);
+  background-color: #cb121b;
+}
+
+/* Outlined white button */
+.secondaryBtn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: transparent;
+  color: var(--color-primary-white);
+  border: 2px solid var(--color-primary-white);
+  padding: 16px 32px;
+  font-family: var(--font-body);
+  font-size: var(--font-size-small);
+  font-weight: 600;
+  border-radius: var(--radius-button);
+  cursor: pointer;
+  transition: transform var(--duration-fast) var(--ease-standard),
+              background-color var(--duration-fast) var(--ease-standard),
+              color var(--duration-fast) var(--ease-standard);
+}
+
+.secondaryBtn:hover {
+  transform: translateY(-3px);
+  background-color: var(--color-primary-white);
+  color: var(--color-primary-navy);
+}
+
+/* Responsive Rules */
+@media (max-width: 768px) {
+  .headline {
+    font-size: var(--font-size-h2);
+  }
+  
+  .ctaSection {
+    padding: var(--space-7) 0;
+  }
+}
+
+@media (max-width: 580px) {
+  .buttonGroup {
+    flex-direction: column;
+    width: 100%;
+    max-width: 300px;
+  }
+  
+  .primaryBtn, .secondaryBtn {
+    width: 100%;
+  }
+}

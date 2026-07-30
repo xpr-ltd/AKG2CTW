@@ -1,0 +1,204 @@
+.modalOverlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(16, 35, 62, 0.6);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1200;
+  padding: var(--space-3);
+}
+
+.modalContent {
+  background-color: var(--color-primary-white);
+  border-radius: var(--radius-panel);
+  width: 100%;
+  max-width: 680px;
+  max-height: 90vh;
+  box-shadow: var(--shadow-hover);
+  display: flex;
+  flex-direction: column;
+  border: 1px solid rgba(255,255,255,0.3);
+  overflow: hidden;
+  position: relative;
+  animation: modalScaleUp var(--duration-medium) var(--ease-standard);
+}
+
+@keyframes modalScaleUp {
+  from { transform: scale(0.9) translateY(20px); opacity: 0; }
+  to { transform: scale(1) translateY(0); opacity: 1; }
+}
+
+.modalHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: var(--space-3) var(--space-4);
+  border-bottom: 1px solid var(--color-border-light);
+  background-color: rgba(249, 195, 0, 0.05);
+}
+
+.bookBadge {
+  font-family: var(--font-body);
+  font-size: var(--font-size-caption);
+  font-weight: 700;
+  color: var(--color-primary-orange);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.closeBtn {
+  background: none;
+  border: none;
+  color: var(--color-text-primary);
+  cursor: pointer;
+  padding: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  transition: background-color var(--duration-fast) var(--ease-standard);
+}
+
+.closeBtn:hover {
+  background-color: var(--color-border-light);
+}
+
+.pageContainer {
+  padding: var(--space-4) var(--space-5);
+  overflow-y: auto;
+  flex: 1;
+  text-align: left;
+}
+
+.pageTitle {
+  font-family: var(--font-body);
+  font-size: 24px;
+  font-weight: 700;
+  color: var(--color-text-primary);
+  margin-bottom: 2px;
+  text-transform: none;
+}
+
+.pageSubtitle {
+  font-family: var(--font-body);
+  font-size: var(--font-size-caption);
+  color: var(--color-primary-orange);
+  font-weight: 500;
+  display: block;
+  margin-bottom: var(--space-2);
+}
+
+.titleDivider {
+  border: none;
+  border-top: 1px solid var(--color-border-light);
+  margin-bottom: var(--space-3);
+}
+
+.pageBody {
+  font-family: var(--font-body);
+  font-size: 16px;
+  line-height: 1.6;
+  color: var(--color-text-secondary);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
+
+.pageBody p {
+  font-size: 16px;
+  color: var(--color-text-secondary);
+}
+
+.pageBody strong {
+  color: var(--color-text-primary);
+}
+
+.modalFooter {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: var(--space-3) var(--space-4);
+  border-top: 1px solid var(--color-border-light);
+  background-color: rgba(16, 35, 62, 0.02);
+}
+
+.pagination {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+}
+
+.pageBtn {
+  background: none;
+  border: 1px solid var(--color-border-light);
+  border-radius: var(--radius-button);
+  width: 36px;
+  height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  color: var(--color-text-primary);
+  background-color: var(--color-primary-white);
+  transition: border-color var(--duration-fast) var(--ease-standard),
+              color var(--duration-fast) var(--ease-standard);
+}
+
+.pageBtn:hover:not(:disabled) {
+  border-color: var(--color-primary-red);
+  color: var(--color-primary-red);
+}
+
+.pageBtn:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+.pageIndicator {
+  font-family: var(--font-body);
+  font-size: var(--font-size-caption);
+  font-weight: 500;
+  color: var(--color-text-secondary);
+}
+
+.downloadBtn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background-color: var(--color-primary-red);
+  color: var(--color-primary-white);
+  border: none;
+  padding: 10px 20px;
+  border-radius: var(--radius-button);
+  font-family: var(--font-body);
+  font-size: var(--font-size-caption);
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color var(--duration-fast) var(--ease-standard);
+}
+
+.downloadBtn:hover {
+  background-color: #cb121b;
+}
+
+@media (max-width: 580px) {
+  .pageContainer {
+    padding: var(--space-3) var(--space-4);
+  }
+  
+  .modalFooter {
+    flex-direction: column;
+    gap: var(--space-2);
+  }
+  
+  .downloadBtn {
+    width: 100%;
+    justify-content: center;
+  }
+}
