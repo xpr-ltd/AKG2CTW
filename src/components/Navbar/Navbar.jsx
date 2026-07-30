@@ -70,7 +70,7 @@ export default function Navbar() {
     <nav className={`${styles.navbar} ${scrolled ? styles.scrolled : ''}`}>
       <div className={`${styles.container} container`}>
         <div className={styles.logo} onClick={() => handleNavClick('home')}>
-          <span className={styles.logoGold}>A KID'S</span> GUIDE TO CHANGE THE W
+          <span className={styles.logoGold}>A KID'S</span>{' '}GUIDE TO CHANGE THE W
           <span className={styles.globeWrapper}>
             <img src="/images/illustrations/globe-removebg.png" alt="O" className={styles.globeLogo} />
           </span>

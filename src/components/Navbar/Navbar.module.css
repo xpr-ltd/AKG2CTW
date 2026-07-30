@@ -38,9 +38,6 @@
   user-select: none;
   font-weight: 900;
   letter-spacing: 0.5px;
-  display: flex;
-  align-items: center;
-  gap: 1px;
   white-space: nowrap;
 }
 

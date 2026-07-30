@@ -39,7 +39,7 @@ export default function Footer() {
           {/* Brand Info */}
           <div className={styles.brandInfo}>
             <div className={styles.logo} onClick={() => handleScrollTo('home')}>
-              <span className={styles.logoGold}>A KID'S</span> GUIDE TO CHANGE THE W
+              <span className={styles.logoGold}>A KID'S</span>{' '}GUIDE TO CHANGE THE W
               <span className={styles.globeWrapper}>
                 <img src="/images/illustrations/globe-removebg.png" alt="O" className={styles.globeLogo} />
               </span>
