@@ -99,7 +99,7 @@ export default function Hero({ onOpenSample }) {
 
           <div className={styles.buttonGroup}>
             <a 
-              href="https://selar.com/akg2ctw" 
+              href="https://selar.com/akidsguide" 
               target="_blank" 
               rel="noopener noreferrer" 
               className={styles.primaryBtn}
