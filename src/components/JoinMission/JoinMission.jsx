@@ -10,7 +10,7 @@ export default function JoinMission() {
 
   return (
     <section 
-      id="mission" 
+      id="launch" 
       ref={ref} 
       className={`${styles.missionSection} ${revealed ? styles.revealed : ''}`}
     >

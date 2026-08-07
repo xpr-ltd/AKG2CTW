@@ -80,7 +80,7 @@ export default function Navbar() {
         </div>
 
         {!isLaunched && (
-          <a href="#mission" className={styles.navbarTimer}>
+          <a href="#launch" className={styles.navbarTimer}>
             LAUNCHING IN {days}D : {hours}H : {minutes}M : {seconds}S
           </a>
         )}
