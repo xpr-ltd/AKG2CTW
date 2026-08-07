@@ -55,7 +55,9 @@ export default function Navbar() {
     setMobileMenuOpen(false);
     const el = document.getElementById(id);
     if (el) {
-      const offset = 80; // Offset for header height
+      // Scroll 48px deeper (50% of the 96px padding) for the launch details section
+      const extraScroll = id === 'mission' ? 48 : 0;
+      const offset = 80 - extraScroll;
       const bodyRect = document.body.getBoundingClientRect().top;
       const elementRect = el.getBoundingClientRect().top;
       const elementPosition = elementRect - bodyRect;
