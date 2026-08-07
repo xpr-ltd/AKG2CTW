@@ -9,7 +9,7 @@
   background: linear-gradient(180deg, #ffd133, #f9b800);
   overflow: hidden;
   transition: background var(--duration-medium) var(--ease-standard);
-  padding-top: 48px; /* offset for sticky navbar (reduced by another 20%) */
+  padding-top: 28px; /* offset for sticky navbar (reduced by another 40%) */
 }
 
 .bgBright {
