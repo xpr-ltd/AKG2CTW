@@ -80,7 +80,7 @@ export default function Navbar() {
         </div>
 
         {!isLaunched && (
-          <div className={styles.navbarTimer}>
+          <div className={styles.navbarTimer} onClick={() => handleNavClick('mission')}>
             LAUNCHING IN {days}D : {hours}H : {minutes}M : {seconds}S
           </div>
         )}
