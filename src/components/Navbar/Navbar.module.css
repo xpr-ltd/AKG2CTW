@@ -213,6 +213,7 @@
   align-items: center;
   user-select: none;
   cursor: pointer;
+  text-decoration: none;
   transition: opacity var(--duration-fast) var(--ease-standard);
 }
 
