@@ -5,7 +5,6 @@ import Hero from './components/Hero/Hero';
 import BigIdea from './components/BigIdea/BigIdea';
 import WhyThisBook from './components/WhyThisBook/WhyThisBook';
 import BookPreview from './components/BookPreview/BookPreview';
-import YoungInnovators from './components/YoungInnovators/YoungInnovators';
 import Author from './components/Author/Author';
 import JoinMission from './components/JoinMission/JoinMission';
 import CTA from './components/CTA/CTA';
@@ -47,8 +46,7 @@ function App() {
         {/* 4. What's Inside? (Checklist & Spread) */}
         <BookPreview />
 
-        {/* 5. Meet the Young Innovators (Gold Background) */}
-        <YoungInnovators />
+
 
         {/* 6. Meet the Author */}
         <Author />
