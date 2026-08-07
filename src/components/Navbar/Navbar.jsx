@@ -7,7 +7,7 @@ export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [activeSection, setActiveSection] = useState('home');
-  const { isLaunched } = useCountdown('2026-08-21T11:00:00+01:00');
+  const { days, hours, minutes, seconds, isLaunched } = useCountdown('2026-08-21T11:00:00+01:00');
 
   const navItems = [
     { label: 'Home', id: 'home' },
@@ -78,6 +78,12 @@ export default function Navbar() {
           </span>
           RLD
         </div>
+
+        {!isLaunched && (
+          <div className={styles.navbarTimer}>
+            LAUNCHING IN {days}D : {hours}H : {minutes}M : {seconds}S
+          </div>
+        )}
 
         <ul className={styles.navLinks}>
           {navItems.map((item) => (

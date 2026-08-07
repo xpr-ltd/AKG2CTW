@@ -200,3 +200,29 @@
     display: flex;
   }
 }
+
+.navbarTimer {
+  font-family: var(--font-heading);
+  color: var(--color-primary-navy);
+  font-size: 20px;
+  letter-spacing: 0.5px;
+  white-space: nowrap;
+  margin-left: var(--space-4);
+  margin-right: auto;
+  display: flex;
+  align-items: center;
+  user-select: none;
+}
+
+@media (max-width: 1024px) {
+  .navbarTimer {
+    font-size: 16px;
+    margin-left: var(--space-2);
+  }
+}
+
+@media (max-width: 768px) {
+  .navbarTimer {
+    display: none;
+  }
+}
