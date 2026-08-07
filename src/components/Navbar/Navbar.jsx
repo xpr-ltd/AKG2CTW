@@ -1,18 +1,20 @@
 import React, { useState, useEffect } from 'react';
 import styles from './Navbar.module.css';
 import { Menu, X } from 'lucide-react';
+import useCountdown from '../../hooks/useCountdown';
 
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [activeSection, setActiveSection] = useState('home');
+  const { isLaunched } = useCountdown('2026-08-21T11:00:00+01:00');
 
   const navItems = [
     { label: 'Home', id: 'home' },
     { label: 'About the Book', id: 'about' },
     { label: 'Inside', id: 'inside' },
     { label: 'Author', id: 'author' },
-    { label: 'Buy', id: 'buy' }
+    { label: isLaunched ? 'Buy' : 'Pre-order', id: 'buy' }
   ];
 
   useEffect(() => {

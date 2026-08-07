@@ -2,10 +2,12 @@ import React, { useEffect, useState } from 'react';
 import styles from './Hero.module.css';
 import { ArrowDown } from 'lucide-react';
 import { useReducedMotion } from 'framer-motion';
+import useCountdown from '../../hooks/useCountdown';
 
 export default function Hero({ onOpenSample }) {
   const shouldReduceMotion = useReducedMotion();
   const [animationStep, setAnimationStep] = useState(0);
+  const { days, hours, minutes, seconds, isLaunched } = useCountdown('2026-08-21T11:00:00+01:00');
 
   useEffect(() => {
     if (shouldReduceMotion) {
@@ -97,6 +99,34 @@ export default function Hero({ onOpenSample }) {
             invent creatively, and build a brighter future.
           </p>
 
+          {/* Countdown timer */}
+          {!isLaunched && (
+            <div className={styles.countdownContainer}>
+              <div className={styles.countdownTitle}>BOOK LAUNCH COUNTDOWN</div>
+              <div className={styles.timer}>
+                <div className={styles.timeBlock}>
+                  <span className={styles.timeValue}>{String(days).padStart(2, '0')}</span>
+                  <span className={styles.timeLabel}>DAYS</span>
+                </div>
+                <div className={styles.timeDivider}>:</div>
+                <div className={styles.timeBlock}>
+                  <span className={styles.timeValue}>{String(hours).padStart(2, '0')}</span>
+                  <span className={styles.timeLabel}>HOURS</span>
+                </div>
+                <div className={styles.timeDivider}>:</div>
+                <div className={styles.timeBlock}>
+                  <span className={styles.timeValue}>{String(minutes).padStart(2, '0')}</span>
+                  <span className={styles.timeLabel}>MINUTES</span>
+                </div>
+                <div className={styles.timeDivider}>:</div>
+                <div className={styles.timeBlock}>
+                  <span className={styles.timeValue}>{String(seconds).padStart(2, '0')}</span>
+                  <span className={styles.timeLabel}>SECONDS</span>
+                </div>
+              </div>
+            </div>
+          )}
+
           <div className={styles.buttonGroup}>
             <a 
               href="https://selar.com/akidsguide" 
@@ -104,7 +134,7 @@ export default function Hero({ onOpenSample }) {
               rel="noopener noreferrer" 
               className={styles.primaryBtn}
             >
-              Get the Book
+              {isLaunched ? "Get the Book" : "Pre-order Now"}
             </a>
             <button 
               onClick={onOpenSample}

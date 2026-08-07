@@ -14,9 +14,9 @@ export default function Author() {
   ];
 
   return (
-    <section 
-      id="author" 
-      ref={ref} 
+    <section
+      id="author"
+      ref={ref}
       className={`${styles.authorSection} ${revealed ? styles.revealed : ''}`}
     >
       <div className={`${styles.container} container`}>
@@ -31,11 +31,10 @@ export default function Author() {
             <div className={styles.bioWrapper}>
               <h3 className={styles.authorName}>Ime Inyang</h3>
               <p className={styles.mission}>
-                "My mission is to help children discover that technology is a creative canvas, and their curiosity is the ultimate paintbrush to improve the world."
+                "The future doesn't change because a few people have brilliant ideas—it changes because ordinary people choose to imagine, create, and act. I believe every child has the potential to become one of those people."
               </p>
               <p className={styles.biography}>
-                Ime Inyang is a distinguished engineering leader, AI developer, and educator. 
-                With years of industry experience, he has developed a unique philosophy: that the most powerful technology is only as good as the purpose behind it. He wrote this book to make complex innovation principles intuitive, exciting, and accessible to children globally.
+                Ime Inyang is an AI leader, engineering professional, educator, and founder dedicated to advancing innovation through artificial intelligence and leveraging technology to build the future we desire. Through this book, he invites children to dream boldly, think creatively, and discover that they can turn their ideas into solutions that make a difference.
               </p>
             </div>
 
@@ -59,9 +58,9 @@ export default function Author() {
           {/* Right Column: Author Portrait */}
           <div className={styles.rightCol}>
             <div className={styles.portraitWrapper}>
-              <img 
-                src="/images/author/headshot_ime.jpg" 
-                alt="Ime Inyang - Author Portrait" 
+              <img
+                src="/images/author/headshot_ime.jpg"
+                alt="Ime Inyang - Author Portrait"
                 className={styles.portrait}
               />
               <div className={styles.photoFrame}></div>

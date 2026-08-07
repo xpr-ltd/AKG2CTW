@@ -1,9 +1,11 @@
 import React from 'react';
 import styles from './CTA.module.css';
 import useReveal from '../../hooks/useReveal';
+import useCountdown from '../../hooks/useCountdown';
 
 export default function CTA({ onOpenSample }) {
   const [ref, revealed] = useReveal(0.2);
+  const { isLaunched } = useCountdown('2026-08-21T11:00:00+01:00');
 
   return (
     <section 
@@ -36,7 +38,7 @@ export default function CTA({ onOpenSample }) {
             rel="noopener noreferrer" 
             className={styles.primaryBtn}
           >
-            Buy the Book
+            {isLaunched ? "Buy the Book" : "Pre-order the Book"}
           </a>
           <button 
             onClick={onOpenSample}
