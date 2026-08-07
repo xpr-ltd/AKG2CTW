@@ -40,12 +40,6 @@ export default function CTA({ onOpenSample }) {
           >
             {isLaunched ? "Buy the Book" : "Pre-order the Book"}
           </a>
-          <button 
-            onClick={onOpenSample}
-            className={styles.secondaryBtn}
-          >
-            Download Sample
-          </button>
         </div>
       </div>
     </section>

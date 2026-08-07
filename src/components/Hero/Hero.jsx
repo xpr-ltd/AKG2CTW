@@ -108,12 +108,6 @@ export default function Hero({ onOpenSample }) {
             >
               {isLaunched ? "Get the Book" : "Pre-order Now"}
             </a>
-            <button 
-              onClick={onOpenSample}
-              className={styles.secondaryBtn}
-            >
-              Read Sample
-            </button>
           </div>
         </div>
 
