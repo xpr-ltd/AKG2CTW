@@ -134,7 +134,6 @@
   justify-content: center;
 }
 
-/* Mobile Drawer styles */
 .mobileDrawer {
   position: absolute;
   top: 100%;
@@ -142,7 +141,7 @@
   width: 100%;
   background: white;
   box-shadow: var(--shadow-hover);
-  border-bottom: 1px solid var(--color-border-light);
+  border-bottom: none;
   max-height: 0;
   overflow: hidden;
   transition: max-height var(--duration-medium) var(--ease-standard);
@@ -150,6 +149,7 @@
 
 .mobileOpen {
   max-height: 400px;
+  border-bottom: 1px solid var(--color-border-light);
 }
 
 .mobileLinks {
