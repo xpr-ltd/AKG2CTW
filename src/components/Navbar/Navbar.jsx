@@ -51,6 +51,21 @@ export default function Navbar() {
     return () => observer.disconnect();
   }, []);
 
+  // Handle cold-load URL hash navigation (e.g. #launch, #about)
+  useEffect(() => {
+    const hash = window.location.hash;
+    if (hash) {
+      const targetId = hash.replace('#', '');
+      const timer = setTimeout(() => {
+        const el = document.getElementById(targetId);
+        if (el) {
+          el.scrollIntoView({ behavior: 'smooth' });
+        }
+      }, 600); // Wait 600ms for React mount & Hero animations to settle
+      return () => clearTimeout(timer);
+    }
+  }, []);
+
   const handleNavClick = (id) => {
     setMobileMenuOpen(false);
     const el = document.getElementById(id);
