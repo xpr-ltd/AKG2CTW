@@ -1,48 +1,12 @@
-import React, { useState } from 'react';
+import React from 'react';
 import styles from './JoinMission.module.css';
-import { BookOpen, Rocket, Cpu, Heart, CheckCircle2 } from 'lucide-react';
 import useReveal from '../../hooks/useReveal';
+import useCountdown from '../../hooks/useCountdown';
+import { Play } from 'lucide-react';
 
 export default function JoinMission() {
   const [ref, revealed] = useReveal(0.2);
-  const [email, setEmail] = useState('');
-  const [submitted, setSubmitted] = useState(false);
-  const [error, setError] = useState(false);
-
-  const pillars = [
-    {
-      icon: <BookOpen size={30} />,
-      title: 'Learn',
-      desc: 'Encourage lifelong curiosity.'
-    },
-    {
-      icon: <Rocket size={30} />,
-      title: 'Imagine',
-      desc: "Think beyond today's possibilities."
-    },
-    {
-      icon: <Cpu size={30} />,
-      title: 'Create',
-      desc: 'Build meaningful solutions.'
-    },
-    {
-      icon: <Heart size={30} />,
-      title: 'Impact',
-      desc: 'Use knowledge to improve lives.'
-    }
-  ];
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    if (!email || !email.includes('@')) {
-      setError(true);
-      return;
-    }
-
-    setError(false);
-    setSubmitted(true);
-    setEmail('');
-  };
+  const { days, hours, minutes, seconds, isLaunched } = useCountdown('2026-08-21T11:00:00+01:00');
 
   return (
     <section 
@@ -51,81 +15,96 @@ export default function JoinMission() {
       className={`${styles.missionSection} ${revealed ? styles.revealed : ''}`}
     >
       <div className={`${styles.container} container`}>
-        <div className={styles.header}>
-          <span className={styles.eyebrow}>The Movement</span>
-          <h2 className={styles.title}>Join the Mission</h2>
-          <p className={styles.intro}>
-            Every invention begins with curiosity. Every breakthrough begins with someone willing to imagine something better. 
-            Together, we can inspire the next generation of thinkers, creators, and leaders.
-          </p>
-        </div>
+        <div className={styles.layoutGrid}>
+          
+          {/* Left Column - Details & Timer */}
+          <div className={styles.textContent}>
+            <span className={styles.eyebrow}>Official Event</span>
+            <h2 className={styles.title}>Book Launch Celebration</h2>
+            
+            <p className={styles.intro}>
+              Be a part of this historic moment! We invite kids, parents, teachers, and changemakers 
+              around the world to participate in the official virtual book launch of 
+              <strong> "A Kid's Guide to Change the World"</strong>. 
+            </p>
 
-        {/* Pillars Grid with connection line */}
-        <div className={styles.pillarsContainer}>
-          {/* Holographic Connecting Line SVG (Visible on Desktop) */}
-          <svg className={styles.connectionLines} viewBox="0 0 1000 100" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M125,50 L875,50" stroke="rgba(0, 200, 255, 0.2)" strokeWidth="2" strokeDasharray="5 5" />
-            <path 
-              className={styles.glowingPath} 
-              d="M125,50 L875,50" 
-              stroke="var(--color-hologram-cyan)" 
-              strokeWidth="2" 
-              strokeDasharray="150" 
-              strokeDashoffset="150" 
-            />
-          </svg>
+            <p className={styles.detailsText}>
+              Meet the author, get an exclusive sneak peek inside the chapters, and discover how 
+              we can inspire the next generation of young innovators to think boldly and build 
+              a brighter future together.
+            </p>
 
-          <div className={styles.grid}>
-            {pillars.map((pillar, idx) => (
-              <div 
-                key={idx} 
-                className={styles.card}
-                style={{ transitionDelay: `${idx * 150}ms` }}
+            {/* Countdown / Status Box */}
+            <div className={styles.timerContainer}>
+              {!isLaunched ? (
+                <>
+                  <div className={styles.timerTitle}>LAUNCH COUNTDOWN</div>
+                  <div className={styles.countdown}>
+                    <div className={styles.timeBlock}>
+                      <span className={styles.timeValue}>{String(days).padStart(2, '0')}</span>
+                      <span className={styles.timeLabel}>DAYS</span>
+                    </div>
+                    <span className={styles.separator}>:</span>
+                    <div className={styles.timeBlock}>
+                      <span className={styles.timeValue}>{String(hours).padStart(2, '0')}</span>
+                      <span className={styles.timeLabel}>HOURS</span>
+                    </div>
+                    <span className={styles.separator}>:</span>
+                    <div className={styles.timeBlock}>
+                      <span className={styles.timeValue}>{String(minutes).padStart(2, '0')}</span>
+                      <span className={styles.timeLabel}>MINS</span>
+                    </div>
+                    <span className={styles.separator}>:</span>
+                    <div className={styles.timeBlock}>
+                      <span className={styles.timeValue}>{String(seconds).padStart(2, '0')}</span>
+                      <span className={styles.timeLabel}>SECS</span>
+                    </div>
+                  </div>
+                </>
+              ) : (
+                <div className={styles.liveNotice}>
+                  🚀 WE ARE LIVE! JOIN THE CELEBRATION NOW
+                </div>
+              )}
+            </div>
+
+            <div className={styles.actionBlock}>
+              <a 
+                href="https://www.youtube.com/live/kIapz13D_XI?si=L9Fg9sY0ZmiGvE7s"
+                target="_blank"
+                rel="noopener noreferrer"
+                className={styles.watchBtn}
               >
-                <div className={styles.iconContainer}>
-                  {pillar.icon}
-                </div>
-                <h3 className={styles.cardTitle}>{pillar.title}</h3>
-                <p className={styles.cardDesc}>{pillar.desc}</p>
-              </div>
-            ))}
+                {isLaunched ? "Watch the Recording" : "Set Launch Reminder"}
+              </a>
+            </div>
           </div>
-        </div>
 
-        {/* Community & Newsletter signup */}
-        <div className={styles.communityBox}>
-          <p className={styles.inviteText}>
-            Whether you're a child, parent, teacher, school, library, or organization, there's a place for you in this journey.
-          </p>
-
-          <div className={styles.actions}>
-            {!submitted ? (
-              <form onSubmit={handleSubmit} className={styles.subscribeForm}>
-                <div className={styles.inputWrapper}>
-                  <input 
-                    type="email" 
-                    placeholder="Enter your email to stay updated" 
-                    value={email}
-                    onChange={(e) => setEmail(e.target.value)}
-                    className={`${styles.input} ${error ? styles.inputError : ''}`}
-                    aria-label="Email address"
-                  />
-                  {error && <span className={styles.errorText}>Please enter a valid email address.</span>}
-                </div>
-                <button type="submit" className={styles.submitBtn}>
-                  Stay Updated
-                </button>
-              </form>
-            ) : (
-              <div className={styles.successMessage}>
-                <CheckCircle2 size={32} className={styles.successIcon} />
-                <div>
-                  <h4 className={styles.successTitle}>You're in!</h4>
-                  <p className={styles.successText}>We'll keep you updated on exciting news and resources.</p>
+          {/* Right Column - Clickable Thumbnail Image */}
+          <div className={styles.imageContent}>
+            <a 
+              href="https://www.youtube.com/live/kIapz13D_XI?si=L9Fg9sY0ZmiGvE7s"
+              target="_blank"
+              rel="noopener noreferrer"
+              className={styles.thumbnailLink}
+              aria-label="Watch the Book Launch on YouTube"
+            >
+              <div className={styles.thumbnailWrapper}>
+                <img 
+                  src="/images/illustrations/eLaunch_thumbnail.png" 
+                  alt="Book Launch Livestream Thumbnail" 
+                  className={styles.thumbnailImg}
+                />
+                <div className={styles.overlay}>
+                  <div className={styles.playIconCircle}>
+                    <Play size={32} fill="currentColor" />
+                  </div>
+                  <span className={styles.overlayText}>WATCH LIVESTREAM</span>
                 </div>
               </div>
-            )}
+            </a>
           </div>
+
         </div>
       </div>
     </section>
