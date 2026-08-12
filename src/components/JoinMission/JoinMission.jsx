@@ -237,6 +237,8 @@ Hope to see you there! 🌍📖`;
                 {/* Email */}
                 <a
                   href={`mailto:?subject=${encodedSubject}&body=${encodedMessage}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
                   className={`${styles.roundChannelLink} ${styles.email}`}
                   title="Send via Email"
                 >
