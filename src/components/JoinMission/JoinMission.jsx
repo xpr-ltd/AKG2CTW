@@ -125,7 +125,7 @@ Hope to see you there! 🌍📖`;
             >
               <div className={styles.thumbnailWrapper}>
                 <img
-                  src="/images/illustrations/eLaunch_thumbnail.png"
+                  src="/images/illustrations/eLaunch_thumbnail.png?v=2"
                   alt="Book Launch Livestream Thumbnail"
                   className={styles.thumbnailImg}
                 />
