@@ -6,7 +6,7 @@ import { Play, X, Copy, Check, MessageCircle, Send, Mail } from 'lucide-react';
 
 export default function JoinMission() {
   const [ref, revealed] = useReveal(0.2);
-  const { isLaunched } = useCountdown('2026-08-21T14:00:00+01:00');
+  const { days, hours, minutes, seconds, isLaunched } = useCountdown('2026-08-21T14:00:00+01:00');
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [copied, setCopied] = useState(false);
 
@@ -57,6 +57,40 @@ Hope to see you there! 🌍📖`;
               around the world to participate in the official virtual book launch of 
               <strong> "A Kid's Guide to Change the World"</strong>. 
             </p>
+
+            {/* Countdown / Status Box */}
+            <div className={styles.timerContainer}>
+              {!isLaunched ? (
+                <>
+                  <div className={styles.timerTitle}>LAUNCH COUNTDOWN</div>
+                  <div className={styles.countdown}>
+                    <div className={styles.timeBlock}>
+                      <span className={styles.timeValue}>{String(days).padStart(2, '0')}</span>
+                      <span className={styles.timeLabel}>DAYS</span>
+                    </div>
+                    <span className={styles.separator}>:</span>
+                    <div className={styles.timeBlock}>
+                      <span className={styles.timeValue}>{String(hours).padStart(2, '0')}</span>
+                      <span className={styles.timeLabel}>HOURS</span>
+                    </div>
+                    <span className={styles.separator}>:</span>
+                    <div className={styles.timeBlock}>
+                      <span className={styles.timeValue}>{String(minutes).padStart(2, '0')}</span>
+                      <span className={styles.timeLabel}>MINS</span>
+                    </div>
+                    <span className={styles.separator}>:</span>
+                    <div className={styles.timeBlock}>
+                      <span className={styles.timeValue}>{String(seconds).padStart(2, '0')}</span>
+                      <span className={styles.timeLabel}>SECS</span>
+                    </div>
+                  </div>
+                </>
+              ) : (
+                <div className={styles.liveNotice}>
+                  🚀 WE ARE LIVE! JOIN THE CELEBRATION NOW
+                </div>
+              )}
+            </div>
 
             <div className={styles.actionGroup}>
               <div className={styles.actionBlock}>
