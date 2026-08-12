@@ -454,9 +454,10 @@
 }
 
 .channelsGrid {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
+  display: flex;
+  flex-wrap: wrap;
   gap: var(--space-2);
+  justify-content: center;
 }
 
 .channelLink {
@@ -464,7 +465,7 @@
   align-items: center;
   justify-content: center;
   gap: 8px;
-  padding: 10px;
+  padding: 10px 16px;
   border-radius: var(--radius-button);
   font-family: var(--font-body);
   font-size: 13px;
@@ -472,6 +473,8 @@
   text-decoration: none;
   transition: all var(--duration-fast) var(--ease-standard);
   border: 1px solid var(--color-border-light);
+  flex: 1 1 calc(50% - var(--space-2));
+  min-width: 140px;
 }
 
 /* Specific Channel Colors */
@@ -509,6 +512,18 @@
   color: white;
   border-color: #111111;
   box-shadow: 0 4px 12px rgba(17, 17, 17, 0.2);
+}
+
+.linkedin {
+  color: #0a66c2;
+  background-color: rgba(10, 102, 194, 0.05);
+  border-color: rgba(10, 102, 194, 0.15);
+}
+.linkedin:hover {
+  background-color: #0a66c2;
+  color: white;
+  border-color: #0a66c2;
+  box-shadow: 0 4px 12px rgba(10, 102, 194, 0.2);
 }
 
 .email {
