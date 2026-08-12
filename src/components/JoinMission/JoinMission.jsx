@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import styles from './JoinMission.module.css';
 import useReveal from '../../hooks/useReveal';
 import useCountdown from '../../hooks/useCountdown';
@@ -7,6 +7,18 @@ import { Play } from 'lucide-react';
 export default function JoinMission() {
   const [ref, revealed] = useReveal(0.2);
   const { days, hours, minutes, seconds, isLaunched } = useCountdown('2026-08-21T14:00:00+01:00');
+  const [showShareMenu, setShowShareMenu] = useState(false);
+
+  useEffect(() => {
+    const scriptId = 'addtoany-script';
+    if (!document.getElementById(scriptId)) {
+      const script = document.createElement('script');
+      script.id = scriptId;
+      script.src = "https://static.addtoany.com/menu/page.js";
+      script.defer = true;
+      document.body.appendChild(script);
+    }
+  }, []);
 
   return (
     <section 
@@ -28,8 +40,6 @@ export default function JoinMission() {
               around the world to participate in the official virtual book launch of 
               <strong> "A Kid's Guide to Change the World"</strong>. 
             </p>
-
-
 
             {/* Countdown / Status Box */}
             <div className={styles.timerContainer}>
@@ -65,15 +75,41 @@ export default function JoinMission() {
               )}
             </div>
 
-            <div className={styles.actionBlock}>
-              <a 
-                href={isLaunched ? "https://www.youtube.com/live/kIapz13D_XI?si=L9Fg9sY0ZmiGvE7s" : "https://luma.com/piwe9fik"}
-                target="_blank"
-                rel="noopener noreferrer"
-                className={styles.watchBtn}
-              >
-                {isLaunched ? "Watch the Recording" : "Register to Attend"}
-              </a>
+            <div className={styles.actionGroup}>
+              <div className={styles.actionBlock}>
+                <a 
+                  href={isLaunched ? "https://www.youtube.com/live/kIapz13D_XI?si=L9Fg9sY0ZmiGvE7s" : "https://luma.com/piwe9fik"}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className={styles.watchBtn}
+                >
+                  {isLaunched ? "Watch the Recording" : "Register to Attend"}
+                </a>
+                
+                <button 
+                  onClick={() => setShowShareMenu(!showShareMenu)}
+                  className={styles.inviteBtn}
+                  aria-label="Invite a friend"
+                >
+                  Invite a Friend
+                </button>
+              </div>
+
+              {/* AddToAny Share Menu */}
+              <div className={`${styles.shareMenu} ${showShareMenu ? styles.shareMenuOpen : ''}`}>
+                <div 
+                  className="a2a_kit a2a_kit_size_32 a2a_default_style" 
+                  data-a2a-url="https://luma.com/piwe9fik" 
+                  data-a2a-title="eBook Launch Invitation"
+                >
+                  <a className="a2a_dd" href="https://www.addtoany.com/share"></a>
+                  <a className="a2a_button_whatsapp"></a>
+                  <a className="a2a_button_facebook"></a>
+                  <a className="a2a_button_email"></a>
+                  <a className="a2a_button_telegram"></a>
+                  <a className="a2a_button_linkedin"></a>
+                </div>
+              </div>
             </div>
           </div>
 
