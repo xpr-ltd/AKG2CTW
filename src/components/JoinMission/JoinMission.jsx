@@ -23,17 +23,6 @@ https://akidsguide.vercel.app/#launch
 
 Hope to see you there! 🌍📖`;
 
-  // Telegram appends the URL parameter automatically, so we omit it in the text to prevent duplicate links
-  const telegramMessage = `Hi! 👋
-
-I'd love for you to join me for the A Kid's Guide to Change the World | eBook Launch.
-
-📅 Friday, 21 August 2026
-🕑 2:00 PM WAT
-📺 YouTube Live
-
-Set a reminder and join us here:`;
-
   const handleCopy = async () => {
     try {
       await navigator.clipboard.writeText(inviteMessage);
@@ -46,7 +35,6 @@ Set a reminder and join us here:`;
 
   // URL-encoded strings for share channels
   const encodedMessage = encodeURIComponent(inviteMessage);
-  const encodedTelegramMessage = encodeURIComponent(telegramMessage);
   const encodedSubject = encodeURIComponent("eBook Launch Invitation");
 
   return (
@@ -211,7 +199,7 @@ Set a reminder and join us here:`;
 
                 {/* Telegram */}
                 <a
-                  href={`https://t.me/share/url?url=${encodeURIComponent('https://akidsguide.vercel.app/#launch')}&text=${encodedTelegramMessage}`}
+                  href={`https://t.me/share/url?url=${encodeURIComponent('https://akidsguide.vercel.app/#launch')}&text=${encodedMessage}`}
                   target="_blank"
                   rel="noopener noreferrer"
                   className={`${styles.roundChannelLink} ${styles.telegram}`}
