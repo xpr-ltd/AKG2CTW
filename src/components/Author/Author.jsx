@@ -47,7 +47,7 @@ export default function Author() {
               Meet the Author
             </h2>
             <h2 className={`${styles.title} ${styles.titleChild} ${activeState === 1 ? styles.titleVisible : ''}`}>
-              The Inspiration
+              Meet The Inspiration
             </h2>
           </div>
         </div>
@@ -70,6 +70,7 @@ export default function Author() {
 
               {/* State 1: The Inspiration Bio */}
               <div className={`${styles.bioChild} ${activeState === 1 ? styles.bioVisible : ''}`}>
+                <h3 className={styles.authorName}>The Young Learners</h3>
                 <p className={styles.mission}>
                   “Who do you want to be?”
                 </p>
