@@ -1,24 +1,44 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import styles from './JoinMission.module.css';
 import useReveal from '../../hooks/useReveal';
 import useCountdown from '../../hooks/useCountdown';
-import { Play } from 'lucide-react';
+import { Play, X, Copy, Check, MessageCircle, Send, Mail } from 'lucide-react';
 
 export default function JoinMission() {
   const [ref, revealed] = useReveal(0.2);
-  const { days, hours, minutes, seconds, isLaunched } = useCountdown('2026-08-21T14:00:00+01:00');
-  const [showShareMenu, setShowShareMenu] = useState(false);
+  const { isLaunched } = useCountdown('2026-08-21T14:00:00+01:00');
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [copied, setCopied] = useState(false);
 
-  useEffect(() => {
-    const scriptId = 'addtoany-script';
-    if (!document.getElementById(scriptId)) {
-      const script = document.createElement('script');
-      script.id = scriptId;
-      script.src = "https://static.addtoany.com/menu/page.js";
-      script.defer = true;
-      document.body.appendChild(script);
+  // Dynamic share URL & message templates
+  const shareUrl = typeof window !== 'undefined' ? `${window.location.origin}/#launch` : 'https://akidsguide.vercel.app/#launch';
+  
+  const inviteMessage = `Hi! 👋
+
+I'd love for you to join me for the A Kid's Guide to Change the World | eBook Launch.
+
+📅 Friday, 21 August 2026
+🕑 2:00 PM WAT
+📺 YouTube Live
+
+Set a reminder and join us here:
+${shareUrl}
+
+Hope to see you there! 🌍📖`;
+
+  const handleCopy = async () => {
+    try {
+      await navigator.clipboard.writeText(inviteMessage);
+      setCopied(true);
+      setTimeout(() => setCopied(false), 2000);
+    } catch (err) {
+      console.error('Failed to copy text: ', err);
     }
-  }, []);
+  };
+
+  // URL-encoded strings for share channels
+  const encodedMessage = encodeURIComponent(inviteMessage);
+  const encodedSubject = encodeURIComponent("eBook Launch Invitation");
 
   return (
     <section 
@@ -41,40 +61,6 @@ export default function JoinMission() {
               <strong> "A Kid's Guide to Change the World"</strong>. 
             </p>
 
-            {/* Countdown / Status Box */}
-            <div className={styles.timerContainer}>
-              {!isLaunched ? (
-                <>
-                  <div className={styles.timerTitle}>LAUNCH COUNTDOWN</div>
-                  <div className={styles.countdown}>
-                    <div className={styles.timeBlock}>
-                      <span className={styles.timeValue}>{String(days).padStart(2, '0')}</span>
-                      <span className={styles.timeLabel}>DAYS</span>
-                    </div>
-                    <span className={styles.separator}>:</span>
-                    <div className={styles.timeBlock}>
-                      <span className={styles.timeValue}>{String(hours).padStart(2, '0')}</span>
-                      <span className={styles.timeLabel}>HOURS</span>
-                    </div>
-                    <span className={styles.separator}>:</span>
-                    <div className={styles.timeBlock}>
-                      <span className={styles.timeValue}>{String(minutes).padStart(2, '0')}</span>
-                      <span className={styles.timeLabel}>MINS</span>
-                    </div>
-                    <span className={styles.separator}>:</span>
-                    <div className={styles.timeBlock}>
-                      <span className={styles.timeValue}>{String(seconds).padStart(2, '0')}</span>
-                      <span className={styles.timeLabel}>SECS</span>
-                    </div>
-                  </div>
-                </>
-              ) : (
-                <div className={styles.liveNotice}>
-                  🚀 WE ARE LIVE! JOIN THE CELEBRATION NOW
-                </div>
-              )}
-            </div>
-
             <div className={styles.actionGroup}>
               <div className={styles.actionBlock}>
                 <a 
@@ -87,28 +73,12 @@ export default function JoinMission() {
                 </a>
                 
                 <button 
-                  onClick={() => setShowShareMenu(!showShareMenu)}
+                  onClick={() => setIsModalOpen(true)}
                   className={styles.inviteBtn}
                   aria-label="Invite a friend"
                 >
                   Invite a Friend
                 </button>
-              </div>
-
-              {/* AddToAny Share Menu */}
-              <div className={`${styles.shareMenu} ${showShareMenu ? styles.shareMenuOpen : ''}`}>
-                <div 
-                  className="a2a_kit a2a_kit_size_32 a2a_default_style" 
-                  data-a2a-url="https://luma.com/piwe9fik" 
-                  data-a2a-title="eBook Launch Invitation"
-                >
-                  <a className="a2a_dd" href="https://www.addtoany.com/share"></a>
-                  <a className="a2a_button_whatsapp"></a>
-                  <a className="a2a_button_facebook"></a>
-                  <a className="a2a_button_email"></a>
-                  <a className="a2a_button_telegram"></a>
-                  <a className="a2a_button_linkedin"></a>
-                </div>
               </div>
             </div>
           </div>
@@ -140,6 +110,105 @@ export default function JoinMission() {
 
         </div>
       </div>
+
+      {/* Share Modal Dialog Overlay */}
+      {isModalOpen && (
+        <div className={styles.modalBackdrop} onClick={() => setIsModalOpen(false)}>
+          <div className={styles.modalCard} onClick={(e) => e.stopPropagation()}>
+            <button 
+              className={styles.closeBtn} 
+              onClick={() => setIsModalOpen(false)}
+              aria-label="Close modal"
+            >
+              <X size={24} />
+            </button>
+            
+            <h3 className={styles.modalTitle}>Invite a Friend</h3>
+            <p className={styles.modalSub}>Preview the invitation message below to copy or share directly.</p>
+
+            {/* Message Preview Box */}
+            <div className={styles.messageBox}>
+              <pre className={styles.messagePreview}>{inviteMessage}</pre>
+            </div>
+
+            {/* Modal Actions */}
+            <div className={styles.modalActions}>
+              <button 
+                onClick={handleCopy} 
+                className={`${styles.copyBtn} ${copied ? styles.copied : ''}`}
+              >
+                {copied ? (
+                  <>
+                    <Check size={18} />
+                    Copied!
+                  </>
+                ) : (
+                  <>
+                    <Copy size={18} />
+                    Copy Invitation
+                  </>
+                )}
+              </button>
+            </div>
+
+            {/* Share Channels Section */}
+            <div className={styles.shareChannels}>
+              <span className={styles.shareLabel}>Share invitation via:</span>
+              <div className={styles.channelsGrid}>
+                {/* WhatsApp */}
+                <a 
+                  href={`https://api.whatsapp.com/send?text=${encodedMessage}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className={`${styles.channelLink} ${styles.whatsapp}`}
+                  title="Share on WhatsApp"
+                >
+                  <MessageCircle size={20} fill="currentColor" />
+                  <span>WhatsApp</span>
+                </a>
+
+                {/* Telegram */}
+                <a 
+                  href={`https://t.me/share/url?text=${encodedMessage}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className={`${styles.channelLink} ${styles.telegram}`}
+                  title="Share on Telegram"
+                >
+                  <Send size={20} fill="currentColor" />
+                  <span>Telegram</span>
+                </a>
+
+                {/* Twitter / X */}
+                <a 
+                  href={`https://twitter.com/intent/tweet?text=${encodedMessage}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className={`${styles.channelLink} ${styles.twitterX}`}
+                  title="Share on X"
+                >
+                  <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor">
+                    <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
+                  </svg>
+                  <span>X / Twitter</span>
+                </a>
+
+                {/* Email */}
+                <a 
+                  href={`mailto:?subject=${encodedSubject}&body=${encodedMessage}`}
+                  className={`${styles.channelLink} ${styles.email}`}
+                  title="Send via Email"
+                >
+                  <Mail size={20} />
+                  <span>Email</span>
+                </a>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      )}
+
     </section>
   );
 }

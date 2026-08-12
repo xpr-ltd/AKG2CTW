@@ -152,37 +152,18 @@
   font-size: var(--font-size-small);
   font-weight: 600;
   text-decoration: none;
-  border: 2px solid var(--color-primary-red);
+  border: 2px solid var(--color-primary-white);
   cursor: pointer;
   transition: all var(--duration-fast) var(--ease-standard);
-  box-shadow: 0 4px 14px rgba(177, 14, 22, 0.1);
+  box-shadow: 0 4px 14px rgba(16, 35, 62, 0.08);
   outline: none;
 }
 
 .inviteBtn:hover {
-  background-color: var(--color-primary-red);
-  color: var(--color-primary-white);
+  background-color: var(--color-primary-white);
+  color: var(--color-primary-orange);
   transform: translateY(-2px);
-  box-shadow: 0 6px 20px rgba(177, 14, 22, 0.25);
-}
-
-.shareMenu {
-  max-height: 0;
-  opacity: 0;
-  overflow: hidden;
-  transition: max-height var(--duration-medium) var(--ease-standard),
-              opacity var(--duration-medium) var(--ease-standard),
-              margin-top var(--duration-medium) var(--ease-standard);
-  margin-top: 0;
-  display: flex;
-  justify-content: flex-start;
-  width: 100%;
-}
-
-.shareMenuOpen {
-  max-height: 80px;
-  opacity: 1;
-  margin-top: var(--space-3);
+  box-shadow: 0 6px 20px rgba(16, 35, 62, 0.15);
 }
 
 .watchBtn {
@@ -333,4 +314,222 @@
     width: 60px;
     height: 60px;
   }
+}
+
+/* Modal Dialog Styles */
+.modalBackdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(16, 35, 62, 0.5);
+  backdrop-filter: blur(6px);
+  z-index: 2000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  animation: fadeIn var(--duration-fast) var(--ease-standard);
+  padding: var(--space-3);
+}
+
+.modalCard {
+  background: var(--color-primary-white);
+  padding: var(--space-5) var(--space-4) var(--space-4);
+  border-radius: var(--radius-card);
+  max-width: 500px;
+  width: 100%;
+  box-shadow: 0 24px 64px rgba(16, 35, 62, 0.25);
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  animation: slideUp var(--duration-medium) var(--ease-standard);
+}
+
+.closeBtn {
+  position: absolute;
+  top: var(--space-3);
+  right: var(--space-3);
+  border: none;
+  background: none;
+  cursor: pointer;
+  color: var(--color-text-secondary);
+  transition: color var(--duration-fast) var(--ease-standard);
+  padding: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.closeBtn:hover {
+  color: var(--color-primary-red);
+}
+
+.modalTitle {
+  font-size: var(--font-size-h3);
+  color: var(--color-primary-navy);
+  margin-bottom: var(--space-1);
+  text-align: center;
+}
+
+.modalSub {
+  font-family: var(--font-body);
+  font-size: var(--font-size-caption);
+  color: var(--color-text-secondary);
+  margin-bottom: var(--space-3);
+  text-align: center;
+}
+
+.messageBox {
+  background: #f7f9fc;
+  border: 1px solid var(--color-border-light);
+  border-radius: var(--radius-button);
+  padding: var(--space-2) var(--space-3);
+  max-height: 180px;
+  overflow-y: auto;
+  margin-bottom: var(--space-3);
+  text-align: left;
+}
+
+.messagePreview {
+  font-family: var(--font-body);
+  font-size: 13px;
+  color: var(--color-text-primary);
+  white-space: pre-wrap;
+  margin: 0;
+  line-height: 1.5;
+}
+
+.modalActions {
+  display: flex;
+  justify-content: center;
+  margin-bottom: var(--space-4);
+}
+
+.copyBtn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-1);
+  background-color: var(--color-primary-red);
+  color: var(--color-primary-white);
+  padding: 12px 24px;
+  border-radius: var(--radius-button);
+  font-family: var(--font-body);
+  font-size: var(--font-size-small);
+  font-weight: 600;
+  border: none;
+  cursor: pointer;
+  transition: all var(--duration-fast) var(--ease-standard);
+  box-shadow: 0 4px 14px rgba(177, 14, 22, 0.2);
+  width: 100%;
+  max-width: 240px;
+}
+
+.copyBtn:hover {
+  background-color: var(--color-primary-navy);
+  transform: translateY(-1px);
+  box-shadow: 0 6px 18px rgba(16, 35, 62, 0.25);
+}
+
+.copyBtn.copied {
+  background-color: var(--color-success);
+  box-shadow: 0 4px 14px rgba(40, 167, 69, 0.2);
+}
+
+.shareChannels {
+  border-top: 1px solid var(--color-border-light);
+  padding-top: var(--space-3);
+  text-align: center;
+}
+
+.shareLabel {
+  font-family: var(--font-body);
+  font-size: var(--font-size-caption);
+  color: var(--color-text-secondary);
+  font-weight: 600;
+  display: block;
+  margin-bottom: var(--space-2);
+}
+
+.channelsGrid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: var(--space-2);
+}
+
+.channelLink {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 10px;
+  border-radius: var(--radius-button);
+  font-family: var(--font-body);
+  font-size: 13px;
+  font-weight: 600;
+  text-decoration: none;
+  transition: all var(--duration-fast) var(--ease-standard);
+  border: 1px solid var(--color-border-light);
+}
+
+/* Specific Channel Colors */
+.whatsapp {
+  color: #25d366;
+  background-color: rgba(37, 211, 102, 0.05);
+  border-color: rgba(37, 211, 102, 0.15);
+}
+.whatsapp:hover {
+  background-color: #25d366;
+  color: white;
+  border-color: #25d366;
+  box-shadow: 0 4px 12px rgba(37, 211, 102, 0.2);
+}
+
+.telegram {
+  color: #0088cc;
+  background-color: rgba(0, 136, 204, 0.05);
+  border-color: rgba(0, 136, 204, 0.15);
+}
+.telegram:hover {
+  background-color: #0088cc;
+  color: white;
+  border-color: #0088cc;
+  box-shadow: 0 4px 12px rgba(0, 136, 204, 0.2);
+}
+
+.twitterX {
+  color: #111111;
+  background-color: rgba(17, 17, 17, 0.05);
+  border-color: rgba(17, 17, 17, 0.15);
+}
+.twitterX:hover {
+  background-color: #111111;
+  color: white;
+  border-color: #111111;
+  box-shadow: 0 4px 12px rgba(17, 17, 17, 0.2);
+}
+
+.email {
+  color: var(--color-primary-navy);
+  background-color: rgba(16, 35, 62, 0.05);
+  border-color: rgba(16, 35, 62, 0.15);
+}
+.email:hover {
+  background-color: var(--color-primary-navy);
+  color: white;
+  border-color: var(--color-primary-navy);
+  box-shadow: 0 4px 12px rgba(16, 35, 62, 0.2);
+}
+
+/* Animations */
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes slideUp {
+  from { transform: translateY(20px); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
 }
