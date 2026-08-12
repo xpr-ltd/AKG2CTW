@@ -1,9 +1,29 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import styles from './Author.module.css';
 import useReveal from '../../hooks/useReveal';
 
 export default function Author() {
   const [ref, revealed] = useReveal(0.2);
+  const [activeState, setActiveState] = useState(0);
+
+  // Seamless loop timing:
+  // State 0: 5.5 seconds (about 5-6s)
+  // State 1: 4.5 seconds (about 4-5s)
+  useEffect(() => {
+    let timer;
+    const runLoop = () => {
+      timer = setTimeout(() => {
+        setActiveState(1);
+        timer = setTimeout(() => {
+          setActiveState(0);
+          runLoop();
+        }, 4500);
+      }, 5500);
+    };
+
+    runLoop();
+    return () => clearTimeout(timer);
+  }, []);
 
   const timelineItems = [
     { stage: 'Engineering', desc: 'Academic foundations in software development and engineering systems.' },
@@ -22,20 +42,41 @@ export default function Author() {
       <div className={`${styles.container} container`}>
         <div className={styles.header}>
           <span className={styles.eyebrow}>Behind the Book</span>
-          <h2 className={styles.title}>Meet the Author</h2>
+          <div className={styles.titleGridStack}>
+            <h2 className={`${styles.title} ${styles.titleChild} ${activeState === 0 ? styles.titleVisible : ''}`}>
+              Meet the Author
+            </h2>
+            <h2 className={`${styles.title} ${styles.titleChild} ${activeState === 1 ? styles.titleVisible : ''}`}>
+              The Inspiration
+            </h2>
+          </div>
         </div>
 
         <div className={styles.content}>
           {/* Left Column: Bio & Timeline */}
           <div className={styles.leftCol}>
-            <div className={styles.bioWrapper}>
-              <h3 className={styles.authorName}>Ime Inyang</h3>
-              <p className={styles.mission}>
-                "The future doesn't change because a few people have brilliant ideas—it changes because ordinary people choose to imagine, create, and act. I believe every child has the potential to become one of those people."
-              </p>
-              <p className={styles.biography}>
-                Ime Inyang is an AI leader, engineering professional, educator, and founder dedicated to advancing innovation through artificial intelligence and leveraging technology to build the future we desire. Through this book, he invites children to dream boldly, think creatively, and discover that they can turn their ideas into solutions that make a difference.
-              </p>
+            
+            <div className={styles.bioGridStack}>
+              {/* State 0: Meet the Author Bio */}
+              <div className={`${styles.bioChild} ${activeState === 0 ? styles.bioVisible : ''}`}>
+                <h3 className={styles.authorName}>Ime Inyang</h3>
+                <p className={styles.mission}>
+                  "The future doesn't change because a few people have brilliant ideas—it changes because ordinary people choose to imagine, create, and act. I believe every child has the potential to become one of those people."
+                </p>
+                <p className={styles.biography}>
+                  Ime Inyang is an AI leader, engineering professional, educator, and founder dedicated to advancing innovation through artificial intelligence and leveraging technology to build the future we desire. Through this book, he invites children to dream boldly, think creatively, and discover that they can turn their ideas into solutions that make a difference.
+                </p>
+              </div>
+
+              {/* State 1: The Inspiration Bio */}
+              <div className={`${styles.bioChild} ${activeState === 1 ? styles.bioVisible : ''}`}>
+                <p className={styles.mission}>
+                  “Who do you want to be?”
+                </p>
+                <p className={styles.biography}>
+                  At a KIR Foundation Meet the Mentor session, Ime shared his “Exciting Tech Journey” with the young learners. Their questions sparked deeper reflection—and laid the groundwork for A Kid’s Guide to Change the World.
+                </p>
+              </div>
             </div>
 
             {/* Timeline */}
@@ -58,11 +99,18 @@ export default function Author() {
           {/* Right Column: Author Portrait */}
           <div className={styles.rightCol}>
             <div className={styles.portraitWrapper}>
-              <img
-                src="/images/author/headshot_ime.jpg"
-                alt="Ime Inyang - Author Portrait"
-                className={styles.portrait}
-              />
+              <div className={styles.portraitGridStack}>
+                <img
+                  src="/images/author/headshot_ime.jpg"
+                  alt="Ime Inyang - Author Portrait"
+                  className={`${styles.portraitChild} ${activeState === 0 ? styles.portraitVisible : ''}`}
+                />
+                <img
+                  src="/images/author/group_shot4x3.jpeg"
+                  alt="The Inspiration - KIR Foundation Session"
+                  className={`${styles.portraitChild} ${activeState === 1 ? styles.portraitVisible : ''}`}
+                />
+              </div>
               <div className={styles.photoFrame}></div>
               <div className={styles.photoGlow}></div>
             </div>
