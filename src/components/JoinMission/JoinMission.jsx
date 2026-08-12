@@ -67,12 +67,12 @@ export default function JoinMission() {
 
             <div className={styles.actionBlock}>
               <a 
-                href="https://www.youtube.com/live/kIapz13D_XI?si=L9Fg9sY0ZmiGvE7s"
+                href={isLaunched ? "https://www.youtube.com/live/kIapz13D_XI?si=L9Fg9sY0ZmiGvE7s" : "https://luma.com/piwe9fik"}
                 target="_blank"
                 rel="noopener noreferrer"
                 className={styles.watchBtn}
               >
-                {isLaunched ? "Watch the Recording" : "Set Launch Reminder"}
+                {isLaunched ? "Watch the Recording" : "Register to Attend"}
               </a>
             </div>
           </div>
