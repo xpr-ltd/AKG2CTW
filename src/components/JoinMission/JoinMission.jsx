@@ -18,7 +18,7 @@ I'd love for you to join me for the *"A Kid's Guide to Change the World" eBook L
 🕑 *2:00 PM WAT*
 📺 *YouTube Live*
 
-Set a reminder and join us here:
+*Set a reminder and join me here:*
 https://akidsguide.vercel.app/#launch
 
 Hope to see you there! 🌍📖`;
