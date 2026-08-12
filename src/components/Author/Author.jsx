@@ -6,23 +6,12 @@ export default function Author() {
   const [ref, revealed] = useReveal(0.2);
   const [activeState, setActiveState] = useState(0);
 
-  // Seamless loop timing:
-  // State 0: 5.5 seconds (about 5-6s)
-  // State 1: 4.5 seconds (about 4-5s)
+  // Loop timing: 10 seconds for each state
   useEffect(() => {
-    let timer;
-    const runLoop = () => {
-      timer = setTimeout(() => {
-        setActiveState(1);
-        timer = setTimeout(() => {
-          setActiveState(0);
-          runLoop();
-        }, 4500);
-      }, 5500);
-    };
-
-    runLoop();
-    return () => clearTimeout(timer);
+    const timer = setInterval(() => {
+      setActiveState((prev) => (prev === 0 ? 1 : 0));
+    }, 10000);
+    return () => clearInterval(timer);
   }, []);
 
   const timelineItems = [
@@ -99,7 +88,7 @@ export default function Author() {
 
           {/* Right Column: Author Portrait */}
           <div className={styles.rightCol}>
-            <div className={styles.portraitWrapper}>
+            <div className={`${styles.portraitWrapper} ${activeState === 1 ? styles.inspirationState : ''}`}>
               <div className={styles.portraitGridStack}>
                 <img
                   src="/images/author/headshot_ime.jpg"
