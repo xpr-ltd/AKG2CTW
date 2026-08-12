@@ -88,7 +88,7 @@ export default function Author() {
 
           {/* Right Column: Author Portrait */}
           <div className={styles.rightCol}>
-            <div className={`${styles.portraitWrapper} ${activeState === 1 ? styles.inspirationState : ''}`}>
+            <div className={styles.portraitWrapper}>
               <div className={styles.portraitGridStack}>
                 <img
                   src="/images/author/headshot_ime.jpg"

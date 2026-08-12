@@ -220,13 +220,6 @@
   position: relative;
   width: 320px;
   height: 400px;
-  transition: width 1s var(--ease-standard),
-              height 1s var(--ease-standard);
-}
-
-.portraitWrapper.inspirationState {
-  width: 400px;
-  height: 300px;
 }
 
 .portraitGridStack {
@@ -314,11 +307,6 @@
   .portraitWrapper {
     width: 280px;
     height: 350px;
-  }
-  
-  .portraitWrapper.inspirationState {
-    width: 320px;
-    height: 240px;
   }
 }
 
