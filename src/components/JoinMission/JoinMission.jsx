@@ -29,11 +29,7 @@ export default function JoinMission() {
               <strong> "A Kid's Guide to Change the World"</strong>. 
             </p>
 
-            <p className={styles.detailsText}>
-              Meet the author, get an exclusive sneak peek inside the chapters, and discover how 
-              we can inspire the next generation of young innovators to think boldly and build 
-              a brighter future together.
-            </p>
+
 
             {/* Countdown / Status Box */}
             <div className={styles.timerContainer}>
