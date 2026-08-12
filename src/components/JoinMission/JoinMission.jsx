@@ -12,11 +12,11 @@ export default function JoinMission() {
 
   const inviteMessage = `Hi! 👋
 
-I'd love for you to join me for the A Kid's Guide to Change the World | eBook Launch.
+I'd love for you to join me for the *"A Kid's Guide to Change the World" eBook Launch*.
 
-📅 Friday, 21 August 2026
-🕑 2:00 PM WAT
-📺 YouTube Live
+📅 *Friday, 21 August 2026*
+🕑 *2:00 PM WAT*
+📺 *YouTube Live*
 
 Set a reminder and join us here:
 https://akidsguide.vercel.app/#launch
