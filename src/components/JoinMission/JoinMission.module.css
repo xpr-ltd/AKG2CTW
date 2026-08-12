@@ -538,6 +538,16 @@
   box-shadow: 0 4px 12px rgba(16, 35, 62, 0.2);
 }
 
+.shareTip {
+  font-family: var(--font-body);
+  font-size: 11px;
+  color: var(--color-text-secondary);
+  line-height: 1.5;
+  margin-top: var(--space-3);
+  display: block;
+  text-align: center;
+}
+
 /* Animations */
 @keyframes fadeIn {
   from { opacity: 0; }

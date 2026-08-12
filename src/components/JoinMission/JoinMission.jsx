@@ -166,7 +166,7 @@ Hope to see you there! 🌍📖`;
 
                 {/* Telegram */}
                 <a 
-                  href={`https://t.me/share/url?text=${encodedMessage}`}
+                  href={`https://t.me/share/url?url=${encodeURIComponent('https://akidsguide.vercel.app/#launch')}&text=${encodedMessage}`}
                   target="_blank"
                   rel="noopener noreferrer"
                   className={`${styles.channelLink} ${styles.telegram}`}
@@ -214,6 +214,9 @@ Hope to see you there! 🌍📖`;
                   <span>Email</span>
                 </a>
               </div>
+              <p className={styles.shareTip}>
+                💡 <strong>LinkedIn Tip:</strong> Since LinkedIn only accepts links, copy the invitation first, then paste (Ctrl+V) it into your post!
+              </p>
             </div>
 
           </div>
