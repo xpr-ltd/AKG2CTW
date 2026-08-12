@@ -23,6 +23,17 @@ https://akidsguide.vercel.app/#launch
 
 Hope to see you there! 🌍📖`;
 
+  // Telegram appends the URL parameter automatically, so we omit it in the text to prevent duplicate links
+  const telegramMessage = `Hi! 👋
+
+I'd love for you to join me for the A Kid's Guide to Change the World | eBook Launch.
+
+📅 Friday, 21 August 2026
+🕑 2:00 PM WAT
+📺 YouTube Live
+
+Set a reminder and join us here:`;
+
   const handleCopy = async () => {
     try {
       await navigator.clipboard.writeText(inviteMessage);
@@ -35,27 +46,28 @@ Hope to see you there! 🌍📖`;
 
   // URL-encoded strings for share channels
   const encodedMessage = encodeURIComponent(inviteMessage);
+  const encodedTelegramMessage = encodeURIComponent(telegramMessage);
   const encodedSubject = encodeURIComponent("eBook Launch Invitation");
 
   return (
-    <section 
-      id="launch" 
-      ref={ref} 
+    <section
+      id="launch"
+      ref={ref}
       className={`${styles.missionSection} ${revealed ? styles.revealed : ''}`}
     >
       <div className={`${styles.container} container`}>
         <div className={styles.layoutGrid}>
-          
+
           {/* Left Column - Details & Timer */}
           <div className={styles.textContent}>
             <span className={styles.eyebrow}>Official Event</span>
             <h2 className={styles.title}>Book Launch Celebration</h2>
             <div className={styles.launchDateTime}>August 21, 2026 at 2:00 PM (GMT+1)</div>
-            
+
             <p className={styles.intro}>
-              Be a part of this historic moment! We invite kids, parents, teachers, and changemakers 
-              around the world to participate in the official virtual book launch of 
-              <strong> "A Kid's Guide to Change the World"</strong>. 
+              Be a part of this historic moment! We invite kids, parents, teachers, and changemakers
+              around the world to participate in the official virtual book launch of
+              <strong> "A Kid's Guide to Change the World"</strong>.
             </p>
 
             {/* Countdown / Status Box */}
@@ -94,7 +106,7 @@ Hope to see you there! 🌍📖`;
 
             <div className={styles.actionGroup}>
               <div className={styles.actionBlock}>
-                <a 
+                <a
                   href={isLaunched ? "https://www.youtube.com/live/kIapz13D_XI?si=L9Fg9sY0ZmiGvE7s" : "https://luma.com/piwe9fik"}
                   target="_blank"
                   rel="noopener noreferrer"
@@ -102,8 +114,8 @@ Hope to see you there! 🌍📖`;
                 >
                   {isLaunched ? "Watch the Recording" : "Register to Attend"}
                 </a>
-                
-                <button 
+
+                <button
                   onClick={() => setIsModalOpen(true)}
                   className={styles.inviteBtn}
                   aria-label="Invite a friend"
@@ -116,7 +128,7 @@ Hope to see you there! 🌍📖`;
 
           {/* Right Column - Clickable Thumbnail Image */}
           <div className={styles.imageContent}>
-            <a 
+            <a
               href="https://www.youtube.com/live/kIapz13D_XI?si=L9Fg9sY0ZmiGvE7s"
               target="_blank"
               rel="noopener noreferrer"
@@ -124,9 +136,9 @@ Hope to see you there! 🌍📖`;
               aria-label="Watch the Book Launch on YouTube"
             >
               <div className={styles.thumbnailWrapper}>
-                <img 
-                  src="/images/illustrations/eLaunch_thumbnail.png" 
-                  alt="Book Launch Livestream Thumbnail" 
+                <img
+                  src="/images/illustrations/eLaunch_thumbnail.png"
+                  alt="Book Launch Livestream Thumbnail"
                   className={styles.thumbnailImg}
                 />
                 <div className={styles.overlay}>
@@ -146,14 +158,14 @@ Hope to see you there! 🌍📖`;
       {isModalOpen && (
         <div className={styles.modalBackdrop} onClick={() => setIsModalOpen(false)}>
           <div className={styles.modalCard} onClick={(e) => e.stopPropagation()}>
-            <button 
-              className={styles.closeBtn} 
+            <button
+              className={styles.closeBtn}
               onClick={() => setIsModalOpen(false)}
               aria-label="Close modal"
             >
               <X size={24} />
             </button>
-            
+
             <h3 className={styles.modalTitle}>Invite a Friend</h3>
             <p className={styles.modalSub}>Preview the invitation message below to copy or share directly.</p>
 
@@ -164,8 +176,8 @@ Hope to see you there! 🌍📖`;
 
             {/* Modal Actions */}
             <div className={styles.modalActions}>
-              <button 
-                onClick={handleCopy} 
+              <button
+                onClick={handleCopy}
                 className={`${styles.copyBtn} ${copied ? styles.copied : ''}`}
               >
                 {copied ? (
@@ -187,7 +199,7 @@ Hope to see you there! 🌍📖`;
               <span className={styles.shareLabel}>Share invitation via:</span>
               <div className={styles.channelsRow}>
                 {/* WhatsApp */}
-                <a 
+                <a
                   href={`https://api.whatsapp.com/send?text=${encodedMessage}`}
                   target="_blank"
                   rel="noopener noreferrer"
@@ -198,8 +210,8 @@ Hope to see you there! 🌍📖`;
                 </a>
 
                 {/* Telegram */}
-                <a 
-                  href={`https://t.me/share/url?url=${encodeURIComponent('https://akidsguide.vercel.app/#launch')}&text=${encodedMessage}`}
+                <a
+                  href={`https://t.me/share/url?url=${encodeURIComponent('https://akidsguide.vercel.app/#launch')}&text=${encodedTelegramMessage}`}
                   target="_blank"
                   rel="noopener noreferrer"
                   className={`${styles.roundChannelLink} ${styles.telegram}`}
@@ -209,7 +221,7 @@ Hope to see you there! 🌍📖`;
                 </a>
 
                 {/* Twitter / X */}
-                <a 
+                <a
                   href={`https://twitter.com/intent/tweet?text=${encodedMessage}`}
                   target="_blank"
                   rel="noopener noreferrer"
@@ -217,12 +229,12 @@ Hope to see you there! 🌍📖`;
                   title="Share on X"
                 >
                   <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor">
-                    <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
+                    <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
                   </svg>
                 </a>
 
                 {/* LinkedIn */}
-                <a 
+                <a
                   href={`https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent('https://akidsguide.vercel.app/#launch')}`}
                   target="_blank"
                   rel="noopener noreferrer"
@@ -230,12 +242,12 @@ Hope to see you there! 🌍📖`;
                   title="Share on LinkedIn"
                 >
                   <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor">
-                    <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.779-1.75-1.75s.784-1.75 1.75-1.75 1.75.779 1.75 1.75-.784 1.75-1.75 1.75zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/>
+                    <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.779-1.75-1.75s.784-1.75 1.75-1.75 1.75.779 1.75 1.75-.784 1.75-1.75 1.75zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z" />
                   </svg>
                 </a>
 
                 {/* Email */}
-                <a 
+                <a
                   href={`mailto:?subject=${encodedSubject}&body=${encodedMessage}`}
                   className={`${styles.roundChannelLink} ${styles.email}`}
                   title="Send via Email"

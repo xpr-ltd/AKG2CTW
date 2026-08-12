@@ -336,9 +336,9 @@
 
 .modalCard {
   background: var(--color-primary-white);
-  padding: var(--space-5) var(--space-4) var(--space-4);
+  padding: var(--space-4) var(--space-3) var(--space-3);
   border-radius: var(--radius-card);
-  max-width: 500px;
+  max-width: 420px;
   width: 100%;
   box-shadow: 0 24px 64px rgba(16, 35, 62, 0.25);
   position: relative;
@@ -369,7 +369,7 @@
 }
 
 .modalTitle {
-  font-size: var(--font-size-h3);
+  font-size: 24px;
   color: var(--color-primary-navy);
   margin-bottom: var(--space-1);
   text-align: center;
@@ -388,9 +388,9 @@
   border: 1px solid var(--color-border-light);
   border-radius: var(--radius-button);
   padding: var(--space-2) var(--space-3);
-  max-height: 180px;
+  max-height: 110px;
   overflow-y: auto;
-  margin-bottom: var(--space-3);
+  margin-bottom: var(--space-2);
   text-align: left;
 }
 
@@ -406,7 +406,7 @@
 .modalActions {
   display: flex;
   justify-content: center;
-  margin-bottom: var(--space-4);
+  margin-bottom: var(--space-3);
 }
 
 .copyBtn {
