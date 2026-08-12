@@ -38,8 +38,16 @@
 .title {
   font-size: var(--font-size-h2);
   color: var(--color-primary-navy);
-  margin-bottom: var(--space-3);
+  margin-bottom: var(--space-2);
   line-height: 1.1;
+}
+
+.launchDateTime {
+  font-family: var(--font-body);
+  font-size: var(--font-size-body);
+  color: var(--color-primary-red);
+  font-weight: 600;
+  margin-bottom: var(--space-3);
 }
 
 .intro {

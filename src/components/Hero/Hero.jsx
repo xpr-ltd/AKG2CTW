@@ -7,7 +7,7 @@ import useCountdown from '../../hooks/useCountdown';
 export default function Hero({ onOpenSample }) {
   const shouldReduceMotion = useReducedMotion();
   const [animationStep, setAnimationStep] = useState(0);
-  const { isLaunched } = useCountdown('2026-08-21T11:00:00+01:00');
+  const { isLaunched } = useCountdown('2026-08-21T14:00:00+01:00');
 
   useEffect(() => {
     if (shouldReduceMotion) {

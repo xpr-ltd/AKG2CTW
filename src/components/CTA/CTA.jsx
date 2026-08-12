@@ -5,7 +5,7 @@ import useCountdown from '../../hooks/useCountdown';
 
 export default function CTA({ onOpenSample }) {
   const [ref, revealed] = useReveal(0.2);
-  const { isLaunched } = useCountdown('2026-08-21T11:00:00+01:00');
+  const { isLaunched } = useCountdown('2026-08-21T14:00:00+01:00');
 
   return (
     <section 

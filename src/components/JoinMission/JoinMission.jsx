@@ -6,7 +6,7 @@ import { Play } from 'lucide-react';
 
 export default function JoinMission() {
   const [ref, revealed] = useReveal(0.2);
-  const { days, hours, minutes, seconds, isLaunched } = useCountdown('2026-08-21T11:00:00+01:00');
+  const { days, hours, minutes, seconds, isLaunched } = useCountdown('2026-08-21T14:00:00+01:00');
 
   return (
     <section 
@@ -21,6 +21,7 @@ export default function JoinMission() {
           <div className={styles.textContent}>
             <span className={styles.eyebrow}>Official Event</span>
             <h2 className={styles.title}>Book Launch Celebration</h2>
+            <div className={styles.launchDateTime}>August 21, 2026 at 2:00 PM (GMT+1)</div>
             
             <p className={styles.intro}>
               Be a part of this historic moment! We invite kids, parents, teachers, and changemakers 

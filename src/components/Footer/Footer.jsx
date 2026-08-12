@@ -6,7 +6,7 @@ import useCountdown from '../../hooks/useCountdown';
 export default function Footer() {
   const [email, setEmail] = useState('');
   const [subscribed, setSubscribed] = useState(false);
-  const { isLaunched } = useCountdown('2026-08-21T11:00:00+01:00');
+  const { isLaunched } = useCountdown('2026-08-21T14:00:00+01:00');
 
   const handleScrollTo = (id) => {
     const el = document.getElementById(id);
