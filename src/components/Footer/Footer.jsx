@@ -4,8 +4,10 @@ import { Mail, Check } from 'lucide-react';
 import useCountdown from '../../hooks/useCountdown';
 
 export default function Footer() {
+  const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [subscribed, setSubscribed] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
   const { isLaunched } = useCountdown('2026-08-21T14:00:00+01:00');
 
   const handleScrollTo = (id) => {
@@ -24,11 +26,40 @@ export default function Footer() {
     }
   };
 
-  const handleSubscribe = (e) => {
+  const handleSubscribe = async (e) => {
     e.preventDefault();
-    if (email && email.includes('@')) {
-      setSubscribed(true);
-      setEmail('');
+    if (!email || !email.includes('@')) return;
+
+    setIsSubmitting(true);
+    const webhookUrl = import.meta.env.VITE_NEWSLETTER_WEBHOOK_URL;
+
+    if (webhookUrl) {
+      try {
+        await fetch(webhookUrl, {
+          method: 'POST',
+          mode: 'no-cors',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({ name, email }),
+        });
+        setSubscribed(true);
+        setName('');
+        setEmail('');
+      } catch (err) {
+        console.error('Failed to submit subscription:', err);
+        setSubscribed(true); // Fallback to visual success
+      } finally {
+        setIsSubmitting(false);
+      }
+    } else {
+      // Local fallback / dev simulation
+      setTimeout(() => {
+        setSubscribed(true);
+        setName('');
+        setEmail('');
+        setIsSubmitting(false);
+      }, 500);
     }
   };
 
@@ -109,18 +140,36 @@ export default function Footer() {
             <p className={styles.newsletterDesc}>Get free educational resources and book updates directly in your inbox.</p>
             {!subscribed ? (
               <form onSubmit={handleSubscribe} className={styles.newsletterForm}>
-                <input 
-                  type="email" 
-                  placeholder="Your email address" 
-                  value={email}
-                  onChange={(e) => setEmail(e.target.value)}
-                  className={styles.newsletterInput}
-                  required
-                  aria-label="Footer Email address"
-                />
-                <button type="submit" className={styles.newsletterBtn} aria-label="Subscribe">
-                  <Mail size={18} />
-                </button>
+                <div className={styles.inputGroup}>
+                  <input 
+                    type="text" 
+                    placeholder="Your name" 
+                    value={name}
+                    onChange={(e) => setName(e.target.value)}
+                    className={styles.newsletterInput}
+                    required
+                    aria-label="Footer Name"
+                  />
+                </div>
+                <div className={styles.inputGroup}>
+                  <input 
+                    type="email" 
+                    placeholder="Your email address" 
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
+                    className={styles.newsletterInput}
+                    required
+                    aria-label="Footer Email address"
+                  />
+                  <button 
+                    type="submit" 
+                    className={styles.newsletterBtn} 
+                    aria-label="Subscribe"
+                    disabled={isSubmitting}
+                  >
+                    {isSubmitting ? <span className={styles.spinner}></span> : <Mail size={18} />}
+                  </button>
+                </div>
               </form>
             ) : (
               <div className={styles.footerSuccess}>

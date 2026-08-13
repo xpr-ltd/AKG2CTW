@@ -150,14 +150,23 @@
 
 .newsletterForm {
   display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+  width: 100%;
+  max-width: 320px;
+}
+
+.inputGroup {
+  display: flex;
   width: 100%;
   border-radius: var(--radius-button);
   overflow: hidden;
-  border: 1px solid rgba(255, 255, 255, 0.15);
+  border: 1.5px solid rgba(255, 255, 255, 0.15);
   background-color: rgba(255, 255, 255, 0.05);
+  transition: all var(--duration-fast) var(--ease-standard);
 }
 
-.newsletterForm:focus-within {
+.inputGroup:focus-within {
   border-color: var(--color-primary-gold);
   box-shadow: 0 0 10px rgba(249, 195, 0, 0.2);
 }
@@ -167,7 +176,7 @@
   height: 44px;
   background: transparent;
   border: none;
-  padding: 0 var(--space-2);
+  padding: 0 14px;
   color: var(--color-primary-white);
   font-family: var(--font-body);
   font-size: var(--font-size-caption);
@@ -193,6 +202,20 @@
 
 .newsletterBtn:hover {
   background-color: var(--color-primary-orange);
+}
+
+.spinner {
+  width: 18px;
+  height: 18px;
+  border: 2px solid rgba(16, 35, 62, 0.15);
+  border-top: 2px solid var(--color-primary-navy);
+  border-radius: 50%;
+  animation: spin 0.8s linear infinite;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
 }
 
 .footerSuccess {
