@@ -91,7 +91,7 @@ export default function Author() {
             <div className={styles.portraitWrapper}>
               <div className={styles.portraitGridStack}>
                 <img
-                  src="/images/author/headshot_ime.jpg"
+                  src="/images/author/headshot_ime.jpg?v=2"
                   alt="Ime Inyang - Author Portrait"
                   className={`${styles.portraitChild} ${activeState === 0 ? styles.portraitVisible : ''}`}
                 />
